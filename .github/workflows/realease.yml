@@ -39,10 +39,12 @@ jobs:
       
 
       - name: Create Git tag
+        env:
+          AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         if: success()
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           VERSION=$(node -p "require('./package.json').version")
           git tag -a "v$VERSION" -m "Release $VERSION"
-          git push origin "v$VERSION"
+          git push origin "v$VERSION" -u $AUTH_TOKEN
