@@ -8,5 +8,6 @@ module.exports = {
     library: 'VersionUtil',
     libraryTarget: 'umd',
   },
+  target: 'node',
   mode: 'production',
 };
