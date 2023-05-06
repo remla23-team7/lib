@@ -1,6 +1,13 @@
 class VersionUtil {
     const
     fs = require('fs');
+    const
+    path = require('path');
+
+    // Get the absolute path to the root directory of the project
+    const
+    rootDir = path.resolve(__dirname, '../');
+
 
     // Read the contents of the package.json file
     const
