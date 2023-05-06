@@ -9,6 +9,7 @@ class VersionUtil {
 
     // Access the version property
     const version = pkg.version;
+
     static getVersion() {
         return VersionUtil.version;
     }
