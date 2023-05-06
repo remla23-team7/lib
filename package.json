@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "fs": "^0.0.1-security",
-    "path": "^0.12.7",
     "webpack": "^5.82.0",
     "webpack-cli": "^5.0.2"
   }
