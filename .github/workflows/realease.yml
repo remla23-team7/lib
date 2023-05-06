@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
@@ -46,5 +48,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           VERSION=$(node -p "require('./package.json').version")
-          git tag -a "v$VERSION" -m "Release $VERSION"
-          git push origin "v$VERSION" -u $AUTH_TOKEN
+          git tag "v$VERSION"
+          git push origin main --follow-tags
