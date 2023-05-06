@@ -4,7 +4,7 @@ class VersionUtil {
 
     // Read the contents of the package.json file
     const
-    pkg = JSON.parse(fs.readFileSync('../package.json', 'utf-8'));
+    pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 
     // Access the version property
     const
