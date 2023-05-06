@@ -26,7 +26,7 @@ jobs:
 
       - name: Determine version
         run: |
-          VERSION=$(node -p "require('./version_util').getVersion()")
+          VERSION=$(node -p "require('./src/version_util').getVersion()")
           echo "Version: $VERSION"
           echo "::set-env name=VERSION::$VERSION"
 
@@ -35,7 +35,7 @@ jobs:
           echo "Publishing version $VERSION to npm"
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           npm publish
-      
+
       - name: Create Git tag
         if: success()
         run: |
