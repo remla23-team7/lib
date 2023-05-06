@@ -25,16 +25,18 @@ jobs:
         run: npm run build
 
       - name: Determine version
+        id: version
         run: |
-          VERSION=$(node -p "require('./src/version_util').getVersion()")
-          echo "Version: $VERSION"
-          echo "::set-env name=VERSION::$VERSION"
+          echo "::set-output name=version::$(node -p "require('./src/version_util').getVersion()")"
 
       - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "Publishing version $VERSION to npm"
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          echo "Publishing version ${{ steps.version.outputs.version }} to npm"
+          npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
           npm publish
+      
 
       - name: Create Git tag
         if: success()
