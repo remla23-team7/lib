@@ -1,8 +1,9 @@
-name: Release
+name: Release Lib
 
 on:
   push:
-    tags: ["v[0-9]+.[0-9]+.[0-9]+"]
+    branches:
+        - main
 
 jobs:
   build-and-publish:
@@ -34,3 +35,10 @@ jobs:
           echo "Publishing version $VERSION to npm"
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           npm publish
+      
+      - name: Create Git tag
+        if: success()
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          git tag -a "v$VERSION" -m "Release $VERSION"
+          git push origin "v$VERSION"
