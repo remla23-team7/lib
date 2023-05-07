@@ -1,6 +1,6 @@
-const path = require('path');
-const { DefinePlugin } = require('webpack');
-const packageJson = require('./package.json');
+import path from 'path';
+import { DefinePlugin } from 'webpack';
+import packageJson from './package.json';
 
 module.exports = {
   entry: './src/version_util.js',
