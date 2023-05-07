@@ -1,9 +1,10 @@
 {
-  "name": "relma23-team7-version-util-lib",
-  "version": "0.0.1",
+  "name": "relma23-team7-version-util-lib-trial",
+  "version": "0.0.55",
   "main": "src/version_util.js",
+  "type": "module",
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.cjs"
   },
   "dependencies": {
     "terser-webpack-plugin": "^5.3.8",

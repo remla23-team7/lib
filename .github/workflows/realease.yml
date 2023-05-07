@@ -38,7 +38,7 @@ jobs:
           VERSION: ${{ env.VERSION }}
         run: |
           npm install 
-          webpack --config webpack.config.js
+          webpack --config webpack.config.cjs
 
       - name: Publish to npm
         env:

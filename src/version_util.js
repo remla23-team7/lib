@@ -1,4 +1,4 @@
-let VERSION  = "0.0.2"
+const VERSION  = "0.0.2"
 
 class VersionUtil {
     static getVersion() {
