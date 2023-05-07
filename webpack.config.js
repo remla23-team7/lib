@@ -5,11 +5,11 @@ const version = require('./package.json').version;
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/version_util.js',
   output: {
-    filename: 'my-library.js',
+    filename: 'version_util.js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'myLibrary',
+    library: 'VersionUtil',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
