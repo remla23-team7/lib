@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: Build library
-        run: npm run build
+        run: webpack --config webpack.config.js --env.VERSION=$(node -p "require('./package.json').version")
 
       - name: Determine version
         id: version
