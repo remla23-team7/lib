@@ -16,8 +16,11 @@ module.exports = (env) => {
     },
     plugins: [
       new DefinePlugin({
-        'process.env.VERSION': JSON.stringify(version),
-      }),
+        'process.env': {
+          VERSION: JSON.stringify(version)
+        }
+      })
+
     ],
   };
 };

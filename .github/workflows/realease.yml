@@ -28,7 +28,10 @@ jobs:
       - name: Build library
         env:
           VERSION: $(node -p "require('./package.json').version")
-        run: webpack --config webpack.config.js
+        run: |
+          echo "VERSION_PACKAGE=$VERSION"
+          webpack --config webpack.config.js
+      
 
       - name: Determine version
         id: version
