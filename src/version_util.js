@@ -1,8 +1,7 @@
-let VERSION = process.env.VERSION;
-
 class VersionUtil {
     static getVersion() {
-        return VERSION || "0.0.1"; // Default version number
+         // Use the version from process.env or fallback to "0.0.1"
+        return process.env.VERSION || "0.0.1";
     }
 }
 
