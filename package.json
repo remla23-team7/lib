@@ -2,7 +2,6 @@
   "name": "relma23-team7-version-util-lib-trial",
   "version": "0.0.56",
   "main": "src/version_util.js",
-  "type": "module",
   "scripts": {
     "build": "webpack --config webpack.config.cjs"
   },
