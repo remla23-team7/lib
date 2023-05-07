@@ -3,7 +3,7 @@
   "version": "0.0.57",
   "main": "src/version_util.js",
   "scripts": {
-    "build": "webpack --config webpack.config.cjs"
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "terser-webpack-plugin": "^5.3.8",
