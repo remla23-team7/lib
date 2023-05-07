@@ -1,6 +1,8 @@
 const path = require('path');
-const { DefinePlugin } = require('webpack');
+const VersionUtil = require('./src/version_util');
+
 const packageJson = require('./package.json');
+const version = packageJson.version;
 
 module.exports = {
   mode: 'production',
@@ -13,8 +15,29 @@ module.exports = {
     umdNamedDefine: true,
   },
   plugins: [
-    new DefinePlugin({
-      'process.env.VERSION': JSON.stringify(packageJson.version),
-    }),
+    // Define the version number as a global variable
+    {
+      apply: (compiler) => {
+        compiler.hooks.compilation.tap('MyPlugin', (compilation) => {
+          compilation.hooks.optimizeChunkAssets.tap('MyPlugin', (chunks) => {
+            for (const chunk of chunks) {
+              for (const file of chunk.files) {
+                if (file === 'version_util.js') {
+                  const source = compilation.assets[file].source();
+                  const result = source.replace(
+                      'new VersionUtil();',
+                      `new VersionUtil('${version}');`
+                  );
+                  compilation.assets[file] = {
+                    source: () => result,
+                    size: () => result.length,
+                  };
+                }
+              }
+            }
+          });
+        });
+      },
+    },
   ],
 };

@@ -1,7 +1,10 @@
 class VersionUtil {
-    static getVersion() {
-         // Use the version from process.env or fallback to "0.0.1"
-        return process.env.VERSION || "0.0.1";
+    constructor(version) {
+        this.version = version;
+    }
+
+    getVersion() {
+        return this.version || '0.0.1';
     }
 }
 
