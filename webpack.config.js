@@ -1,20 +1,21 @@
 const path = require('path');
-const webpack = require('webpack');
-const packageJson = require('./package.json');
+const { DefinePlugin } = require('webpack');
+
+const version = require('./package.json').version;
 
 module.exports = {
-  entry: './src/version_util.js',
-  output: {
-    filename: 'version_util.js',
-    path: path.resolve(__dirname, 'dist'),
-    library: 'VersionUtil',
-    libraryTarget: 'umd',
-  },
-  target: 'node',
   mode: 'production',
+  entry: './src/index.js',
+  output: {
+    filename: 'my-library.js',
+    path: path.resolve(__dirname, 'dist'),
+    library: 'myLibrary',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
+  },
   plugins: [
-    new webpack.DefinePlugin({
-      VERSION: JSON.stringify(packageJson.version),
+    new DefinePlugin({
+      'process.env.VERSION': JSON.stringify(version),
     }),
   ],
 };
