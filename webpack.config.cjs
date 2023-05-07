@@ -10,6 +10,18 @@ module.exports = (env) => {
             library: 'VersionUtil',
             libraryTarget: 'umd',
             umdNamedDefine: true,
-        }
+        },
+        resolve: {
+            extensions: ['.ts', '.js', '.d.ts'],
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.ts$/,
+                    use: 'ts-loader',
+                    exclude: /node_modules/,
+                },
+            ],
+        },
     };
 };
