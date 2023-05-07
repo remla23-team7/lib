@@ -28,6 +28,9 @@ jobs:
       - name: Build library
         run: npm run build
 
+      - name: Build library with webpack
+        run: webpack --config webpack.config.js
+
       - name: Determine version
         id: version
         run: |
