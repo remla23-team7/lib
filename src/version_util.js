@@ -1,4 +1,4 @@
-let VERSION = VERSION;
+let VERSION = process.env.VERSION;
 
 class VersionUtil {
     static getVersion() {
