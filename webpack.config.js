@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+const { DefinePlugin } = require('webpack');
 const packageJson = require('./package.json');
 
 module.exports = {
@@ -10,11 +10,11 @@ module.exports = {
     library: 'VersionUtil',
     libraryTarget: 'umd',
   },
-  target: 'node',
-  mode: 'production',
   plugins: [
-    new webpack.DefinePlugin({
+    new DefinePlugin({
       VERSION: JSON.stringify(packageJson.version),
     }),
   ],
+  target: 'node',
+  mode: 'production',
 };
