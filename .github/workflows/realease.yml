@@ -25,8 +25,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build library with webpack
-        run: webpack --config webpack.config.js
+      - name: Build library
+        run: npm run build
 
       - name: Determine version
         id: version

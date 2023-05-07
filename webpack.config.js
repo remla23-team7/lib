@@ -1,7 +1,6 @@
 const path = require('path');
 const { DefinePlugin } = require('webpack');
-
-const version = require('./package.json').version;
+const packageJson = require('./package.json');
 
 module.exports = {
   mode: 'production',
@@ -15,7 +14,7 @@ module.exports = {
   },
   plugins: [
     new DefinePlugin({
-      'process.env.VERSION': JSON.stringify(version),
+      'process.env.VERSION': JSON.stringify(packageJson.version),
     }),
   ],
 };
