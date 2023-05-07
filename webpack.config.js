@@ -13,14 +13,6 @@ module.exports = (env) => {
       library: 'VersionUtil',
       libraryTarget: 'umd',
       umdNamedDefine: true,
-    },
-    plugins: [
-      new DefinePlugin({
-        'process.env': {
-          VERSION: JSON.stringify(version)
-        }
-      })
-
-    ],
+    }
   };
 };
