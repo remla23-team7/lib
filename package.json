@@ -1,8 +1,7 @@
 {
   "name": "relma23-team7-version-util-lib-trial",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "main": "src/version_util.js",
-  "type": "module",
   "scripts": {
     "build": "webpack"
   },
