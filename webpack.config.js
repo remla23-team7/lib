@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const packageJson = require('./package.json');
 
 module.exports = {
   entry: './src/version_util.js',
@@ -10,4 +12,9 @@ module.exports = {
   },
   target: 'node',
   mode: 'production',
+  plugins: [
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(packageJson.version),
+    }),
+  ],
 };
