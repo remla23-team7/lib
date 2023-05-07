@@ -30,17 +30,19 @@ jobs:
 
       - name: Determine version
         id: version
-        run: |
-          echo "::set-output name=version::$(node -p "require('./src/version_util').getVersion()")"
+        run: echo $(node -p "require('./src/version_util').getVersion()") >> $GITHUB_ENV
+
+      - name: Get version from environment
+        run:
+          echo "Version: ${{ env.VERSION }}"
 
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "Publishing version ${{ steps.version.outputs.version }} to npm"
+          echo "Publishing version ${{ env.VERSION }} to npm"
           npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
           npm publish
-      
 
       - name: Create Git tag
         env:
