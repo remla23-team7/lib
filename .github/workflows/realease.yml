@@ -33,7 +33,7 @@ jobs:
         run: echo $(node -p "require('./src/version_util').getVersion()") >> $GITHUB_ENV
 
       - name: Get version from environment
-        run:
+        run: |
           echo "Version: ${{ env.VERSION }}"
 
       - name: Publish to npm
