@@ -3,7 +3,7 @@ name: Release Lib
 on:
   push:
     branches:
-        - main
+      - main
     paths:
       - 'package.json'
 
@@ -22,27 +22,21 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build library
-        env:
-          VERSION: $(node -p "require('./package.json').version")
-        run: |
-          echo "VERSION_PACKAGE=$VERSION"
-          webpack --config webpack.config.js
-      
-
       - name: Determine version
         id: version
         run: |
-          VERSION=$(node -p "require('./src/version_util').getVersion()")
+          VERSION=$(node -p "require('./package.json').version")
           echo "Version: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_ENV 
 
       - name: Get version from environment
         run: |
           echo "Version: ${{ env.VERSION }}"
+
+      - name: Build library
+        env:
+          VERSION: ${{ env.VERSION }}
+        run: webpack --config webpack.config.js
 
       - name: Publish to npm
         env:
