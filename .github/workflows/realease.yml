@@ -11,6 +11,11 @@ on:
 
 jobs:
   build-and-publish:
+    if: |
+      github.event_name == 'push' &&
+      github.ref_type == 'tag' &&
+      github.ref =~ '^refs/tags/v[0-9]+.[0-9]+.[0-9]+$' &&
+      contains(github.event.head_commit.modified, 'package.json')
     runs-on: ubuntu-latest
 
     steps:
